@@ -1,4 +1,4 @@
-package hammurabi;
+
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -25,9 +25,7 @@ public void main() {
         Scanner scanner = new Scanner(System.in);
 
 
-
-
-        //create new hamurabi game object
+        //create new hammurabi game object
         public void main(String[] args) {
             hammurabi game = new hammurabi(); //start the game
             game.playGame();
@@ -90,19 +88,6 @@ public void main() {
             return acresToPlant;
         }
 
-        private int plagueDeaths(int population) {
-            return population;
-        }
-
-        private int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
-            return acresOwned;
-        }
-
-
-
-        private int starvationDeaths(int population, int bushelsFedToPeople) {
-            return population;
-        }
 
         private boolean uprising(int population, int starvedPeople) {
             return false;
@@ -121,18 +106,20 @@ public void main() {
 
         private void finalSummary() {
         }
-//input for buying acres
-int askHowManyAcresToBuy(int price, int bushels) {
+
+        //input for buying acres
+        int askHowManyAcresToBuy(int price, int bushels) {
 
 
-    int acres = getNumber("Hammurabi how many acres you want to buy?");
-    while (acres * price > bushels || acres < 0) {
-        System .out.println("We have only" + bushels + "bushells left!");
-    }
-    return acres;
-}
-//input for selling acres
-int askHowManyAcresToSell(int acresOwned) {
+            int acres = getNumber("Hammurabi how many acres you want to buy?");
+            while (acres * price > bushels || acres < 0) {
+                System.out.println("We have only" + bushels + "bushells left!");
+            }
+            return acres;
+        }
+
+        //input for selling acres
+        int askHowManyAcresToSell(int acresOwned) {
             int acres = getNumber("how many acres you want to sell?");
             while (acres > acresOwned || acres < 0) {
                 if (acres < 0) {
@@ -144,21 +131,56 @@ int askHowManyAcresToSell(int acresOwned) {
                 acres = getNumber("how many acres you esnt to sell?");
             }
             return acres;
-       //input for feeding people
-    int askHowMuchGrainToFeedPeople(int bushels) {
-        int grain = getNumber( "how much grain you want to feed your people?");
-        while (grain > bushels || grain < 0) {
-            if (grain < 0) {
-                System.out.println("you can't feed your people. leave the kingdom!");
+        }
 
-            } else { System.out.println("We have only" + bushels + "bushels left!");
+        //input for feeding people
+        int askHowMuchGrainToFeedPeople(int bushels) {
+            int grain = getNumber("how much grain you want to feed your people?");
+            while (grain > bushels || grain < 0) {
+                if (grain < 0) {
+                    System.out.println("you can't feed your people. leave the kingdom!");
+
+                } else {
+                    System.out.println("We have only" + bushels + "bushels left!");
+                }
+                grain = getNumber("how much grain you want to feed your people?");
             }
-            grain = getNumber("how much grain you want to feed your people?");
-        } return grain;
+            return grain;
+        }
+
+        //input for acres to plant with grain
+        int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
+            int acres = getNumber("how many acres you want to plan with grains?");
+            while (acres > acresOwned || acres * population > bushels * 2 || acres < 0) {
+                if (acres < 0) {
+                    System.out.println("you can plant -ve acres!!");
+                } else if (acres > acresOwned) {
+                    System.out.println("you don't have that many acres");
+                } else {
+                    System.out.println("we don't have that many people or grains to plant ");
+                }
+                acres = getNumber("how many acres you want to plan with grains");
+            } return acres;
+        }
+        //plague deaths
+        int plagueDeaths(int population) {
+            if (rand.nextInt(100) < 15) {
+                return population / 2;
+            }
+            return 0;
+        }
+        //starvation deaths
+        int starvationDeaths(int population, int bushelsFedToPeople) {
+            int bushelsIsNeeded = 20 * population;
+            if (bushelsIsNeeded < bushelsFedToPeople) {
+                return (bushelsFedToPeople - bushelsIsNeeded) / 20;
+        }
+        return 0;
+        }
+
     }
-}
     }
-}
+
 
 
     /**
