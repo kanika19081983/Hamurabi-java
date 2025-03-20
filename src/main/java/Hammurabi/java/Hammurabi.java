@@ -89,9 +89,7 @@ public void main() {
         }
 
 
-        private boolean uprising(int population, int starvedPeople) {
-            return false;
-        }
+
 
         private int grainEatenByRats(int bushels) {
             return bushels;
@@ -177,7 +175,11 @@ public void main() {
         }
         return 0;
         }
-
+//uprising
+boolean uprising(int population, int howManyPeopleStarved) {
+if ( population == 0) return false;
+return (double) howManyPeopleStarved / population > 0.45;
+}
     }
     }
 
