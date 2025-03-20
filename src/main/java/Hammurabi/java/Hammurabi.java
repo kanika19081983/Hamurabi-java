@@ -98,9 +98,7 @@ public void main() {
             return acresOwned;
         }
 
-        private int askHowMuchGrainToFeedPeople(int bushels) {
-            return bushels;
-        }
+
 
         private int starvationDeaths(int population, int bushelsFedToPeople) {
             return population;
@@ -138,7 +136,26 @@ int askHowManyAcresToSell(int acresOwned) {
             int acres = getNumber("how many acres you want to sell?");
             while (acres > acresOwned || acres < 0) {
                 if (acres < 0) {
+                    System.out.println("are you okay or just making fun of me");
+
+                } else {
+                    System.out.println("you can't sell more acres than you have boo!");
+                }
+                acres = getNumber("how many acres you esnt to sell?");
             }
+            return acres;
+       //input for feeding people
+    int askHowMuchGrainToFeedPeople(int bushels) {
+        int grain = getNumber( "how much grain you want to feed your people?");
+        while (grain > bushels || grain < 0) {
+            if (grain < 0) {
+                System.out.println("you can't feed your people. leave the kingdom!");
+
+            } else { System.out.println("We have only" + bushels + "bushels left!");
+            }
+            grain = getNumber("how much grain you want to feed your people?");
+        } return grain;
+    }
 }
     }
 }
