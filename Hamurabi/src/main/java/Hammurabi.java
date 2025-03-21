@@ -1,9 +1,9 @@
-package hammurabi;
+package Hammurabi.java;
 
 import java.util.Random;         // imports go here
 import java.util.Scanner;
 
-public class Hammurabi {         // must save in a file named Hammurabi.java
+public class Hammurabi.java {         // must save in a file named Hammurabi.java
     Random rand = new Random();  // this is an instance variable
     Scanner scanner = new Scanner(System.in);
 
@@ -13,8 +13,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     }
 
     //create new hammurabi game object
-    void playGame() {
-        int year = 1;
+    void playGame() { int year = 1;
         int starvedPeople = 0;
         int immigrants = 0;
         int population = 100;
@@ -31,13 +30,13 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             if (acresToBuy > 0) {
                 bushels -= acresToBuy * price;
                 acresOwned -= acresToBuy;
-            } else {
-                int acresToSell = askHowManyAcresToSell(acresOwned);
-                if (acresToSell > 0) {
-                    bushels += acresToSell * price;
-                    acresOwned -= acresToSell;
-                }
-            } //feed the people
+            }
+            else { int acresToSell = askHowManyAcresToSell(acresOwned); }
+            if (acresToSell > 0) {
+                bushels += acresToSell * price;
+                acresOwned -= acresToSell;
+            }
+            //feed the people
             int bushelsFedToPeople = askHowMuchGrainToFeedPeople(bushels);
             bushelsFedToPeople -= bushels;
             //plant crops
@@ -176,49 +175,46 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                 return rand.nextInt(7) + 17;
             }
 
-        }
-        //game display
-        void printSummary () {
-            System.out.println("\n0 You are in year" + year + "of your ten year rule.");
-            System.out.println("In the previous year" + starvedPeople + "people starved to death");
-            System.out.println("In the previous year" + immigrants + "people entered kingdom");
-            System.out.println("The population is now" + population + ".");
-            System.out.println("We harvested" + (bushels - 2800 + (year == 1 ? 0 : grainEatenByRats(bushels) + askHowManyAcresToBuy(acresOwned, population, bushels)))
-                    + "bushels at" + (year == 1 ? 0 : (buschels - 2800 + grainEatenByRats(buschels) + askHowManyAcresToPlant(acresOwned, population, bushels)) /
-                    askHowManyAcresToPlant(acresOwned, population, bushels)) + "bushels per acre.");
-            System.out.println("Rats destroyed" + (year == 1 ? 0 : grainEatenByRats(bushels)) + "bushels, leaving" + bushels + "bushels in storage.");
-            System.out.println("The city owns" + acresOwned + "acres of land.");
-            System.out.println("Land is currently worth " + landValue + "bushels per acre. \n");
 
-        }
-        void finalSummary () {
-            System.out.println("Game Over!");
-        }
+            //game display
+            void printSummary () {
+                System.out.println("\n0 You are in year" + year + "of your ten year rule.");
+                System.out.println("In the previous year" + starvedPeople + "people starved to death");
+                System.out.println("In the previous year" + immigrants + "people entered kingdom");
+                System.out.println("The population is now" + population + ".");
+                System.out.println("We harvested" + (bushels - 2800 + (year == 1 ? 0 : grainEatenByRats(bushels) + askHowManyAcresToBuy(acresOwned, population, bushels)))
+                        + "bushels at" + (year == 1 ? 0 : (buschels - 2800 + grainEatenByRats(buschels) + askHowManyAcresToPlant(acresOwned, population, bushels)) /
+                        askHowManyAcresToPlant(acresOwned, population, bushels)) + "bushels per acre.");
+                System.out.println("Rats destroyed" + (year == 1 ? 0 : grainEatenByRats(bushels)) + "bushels, leaving" + bushels + "bushels in storage.");
+                System.out.println("The city owns" + acresOwned + "acres of land.");
+                System.out.println("Land is currently worth " + landValue + "bushels per acre. \n");
+
+            }
+            void finalSummary () {
+                System.out.println("Game Over!");
+            }
 
 
-        /**
-         * Prints the given message (which should ask the user for some integral
-         * quantity), and returns the number entered by the user. If the user's
-         * response isn't an integer, the question is repeated until the user
-         * does give a integer response.
-         *
-         * @param message The request to present to the user.
-         * @return The user's numeric response.
-         */
-        int getNumber (String message){
-            while (true) {
-                System.out.print(message);
-                try {
-                    return scanner.nextInt();
-                } catch (InputMismatchException e) {
-                    System.out.println("\"" + scanner.nextInt() + "\" isn't a number!");
+            /**
+             * Prints the given message (which should ask the user for some integral
+             * quantity), and returns the number entered by the user. If the user's
+             * response isn't an integer, the question is repeated until the user
+             * does give a integer response.
+             *
+             * @param message The request to present to the user.
+             * @return The user's numeric response.
+             */
+            int getNumber (String message){
+                while (true) {
+                    System.out.print(message);
+                    try {
+                        return scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("\"" + scanner.nextInt() + "\" isn't a number!");
+                    }
                 }
             }
         }
-    }
-
-}
-
 
 
 
